@@ -1,5 +1,4 @@
-Jenkinsfile (Declarative Pipline)
-Pipline {
+pipline {
     agent {
         agent { dockerfile true }
     }
