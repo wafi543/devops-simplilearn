@@ -24,8 +24,6 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh "docker stop jovial_lehmann"
-                sh "docker rm jovial_lehmann"
                 sh "docker run $registry:$BUILD_NUMBER"
             }
         }
