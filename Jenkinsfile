@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh "docker run $registry:$BUILD_NUMBER"
+                sh "docker run --rm --stop-timeout 5 $registry:$BUILD_NUMBER"
             }
         }
         stage('Cleaning up') {
