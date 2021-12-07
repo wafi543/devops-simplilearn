@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                catchError {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh "docker rm -f devops"
                 }
                 sh "docker run -d --name devops --restart always $registry:$BUILD_NUMBER"
