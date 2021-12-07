@@ -6,13 +6,6 @@ pipeline {
     }
     agent any
     stages {
-        stage('Test') {
-            steps {
-                sh 'ls'
-                sh 'python3 --version'
-                sh 'node --version'
-            }
-        }
         stage('Building docker image') {
             steps {
                 script {
@@ -27,6 +20,13 @@ pipeline {
                         dockerImage.push()
                     }
                 }
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh "docker stop jovial_lehmann"
+                sh "docker rm jovial_lehmann"
+                sh "docker run $registry:$BUILD_NUMBER"
             }
         }
         stage('Cleaning up') {
