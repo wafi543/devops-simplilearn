@@ -24,13 +24,14 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh "docker run --rm --stop-timeout 5 $registry:$BUILD_NUMBER"
+                sh "docker run -d --name devops $registry:$BUILD_NUMBER"
             }
         }
-        stage('Cleaning up') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        } 
+        // stage('Cleaning up') {
+        //     steps {
+        //         sh "docker kill devops"
+        //         sh "docker rmi $registry:$BUILD_NUMBER"
+        //     }
+        // } 
     }
 }
