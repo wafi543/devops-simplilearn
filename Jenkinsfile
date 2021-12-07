@@ -27,7 +27,7 @@ pipeline {
                 catchError {
                     sh "docker rm -f devops"
                 }
-                sh "docker run -d --name devops --restart=Always $registry:$BUILD_NUMBER"
+                sh "docker run -d --name devops --restart always $registry:$BUILD_NUMBER"
             }
         } 
     }
